@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_course/model/authentication_repository.dart';
 import 'package:riverpod_course/objects/user_model.dart';
 import 'package:riverpod_course/view/home_screen.dart';
-import 'package:riverpod_course/view/simple_login.dart';
+import 'package:riverpod_course/view/profilecreation_screen.dart';
+import 'package:riverpod_course/view/authentication_screen.dart';
 import 'package:riverpod_course/viewmodel/authentication_controller.dart';
 
 class AuthenticationWrapper extends ConsumerWidget {
@@ -23,7 +22,11 @@ class AuthenticationWrapper extends ConsumerWidget {
     } else if (currentUser.userAuthenticationState ==
         UserAuthenticationState.complete) {
       return HomeScreen();
+    } else if (currentUser.userAuthenticationState ==
+        UserAuthenticationState.incomplete) {
+      return ProfileCreationScreen();
     }
+    return Container();
     //  now the build method takes a new paramaeter ScopeReader.
     //  this object will be used to access the provider.
 
